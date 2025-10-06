@@ -6,8 +6,12 @@ import axios from "axios";
 import { z } from "zod";
 
 // CleanSignups API configuration
-const CLEANSIGNUPS_API_KEY = process.env.CLEANSIGNUPS_API_KEY || "eg_live_cacf9685029843d6";
+const CLEANSIGNUPS_API_KEY = process.env.CLEANSIGNUPS_API_KEY;
 const CLEANSIGNUPS_ENDPOINT = "https://api.cleansignups.com/verify";
+
+if (!CLEANSIGNUPS_API_KEY) {
+  console.error('WARNING: CLEANSIGNUPS_API_KEY environment variable is not set. Email verification will fail.');
+}
 
 interface CleanSignupsResponse {
   isTemporary: boolean;
@@ -33,13 +37,8 @@ async function verifyEmailWithCleanSignups(email: string): Promise<CleanSignupsR
     return response.data;
   } catch (error) {
     console.error('CleanSignups API Error:', error);
-    // If API fails, allow registration but log the error
-    // In production, you might want to handle this differently
-    return {
-      isTemporary: false,
-      isValid: true,
-      error: error instanceof Error ? error.message : 'Unknown error'
-    };
+    // If API fails, reject the email to prevent fake signups
+    throw new Error('Email verification service is currently unavailable. Please try again later.');
   }
 }
 
