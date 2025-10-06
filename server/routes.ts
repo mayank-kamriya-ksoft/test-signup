@@ -7,7 +7,7 @@ import { z } from "zod";
 
 // CleanSignups API configuration
 const CLEANSIGNUPS_API_KEY = process.env.CLEANSIGNUPS_API_KEY;
-const CLEANSIGNUPS_ENDPOINT = "https://api.cleansignups.com/verify";
+const CLEANSIGNUPS_ENDPOINT = "https://api.cleansignups.com/v1/verify";
 
 if (!CLEANSIGNUPS_API_KEY) {
   console.error('WARNING: CLEANSIGNUPS_API_KEY environment variable is not set. Email verification will fail.');
