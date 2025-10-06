@@ -4,6 +4,9 @@ import { storage } from "./storage";
 import { insertUserSchema } from "@shared/schema";
 import axios from "axios";
 import { z } from "zod";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 // CleanSignups API configuration
 const CLEANSIGNUPS_API_KEY = process.env.CLEANSIGNUPS_API_KEY;
