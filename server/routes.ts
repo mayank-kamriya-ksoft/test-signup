@@ -10,7 +10,7 @@ dotenv.config();
 
 // CleanSignups API configuration
 const CLEANSIGNUPS_API_KEY = process.env.CLEANSIGNUPS_API_KEY;
-const CLEANSIGNUPS_ENDPOINT = "https://www.cleansignups.com/api/dashboard/verify";
+const CLEANSIGNUPS_ENDPOINT = "https://api.cleansignups.com/api/dashboard/verify";
 
 if (!CLEANSIGNUPS_API_KEY) {
   console.error('WARNING: CLEANSIGNUPS_API_KEY environment variable is not set. Email verification will fail.');
